@@ -85,6 +85,7 @@ export async function createBlog(blogData) {
         'Content-Type': 'multipart/form-data'
       }
     });
+
     await mutate(endpoints.adminBlogs);
     return { success: true, data: res.data };
   } catch (error) {

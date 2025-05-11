@@ -16,9 +16,9 @@ import ClientListPage from '../views/pages/apps/client/list';
 import BlogListPage from '../views/pages/apps/blog/list';
 import PostBlogPage from '../views/pages/apps/blog/post-blog';
 import EditBlogPage from '../views/pages/apps/blog/edit-blog';
-import PortfolioListPage from '../views/pages/apps/portfolio/list';
-import PostPortfolioPage from '../views/pages/apps/portfolio/post-portfolio';
-import EditPortfolioPage from '../views/pages/apps/portfolio/edit-portfolio';
+import ServiceList from '../views/pages/apps/service/list';
+import ServiceListPage from '../views/pages/apps/service/list';
+import QuotesListPage from '../views/pages/apps/quote/list';
 
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
@@ -40,7 +40,7 @@ const MainRoutes = {
     {
       path: '/',
       element: (
-        <ProtectedRoute roles={[1]}>
+        <ProtectedRoute roles={[2, 1]}>
           <DashboardDefault />
         </ProtectedRoute>
       )
@@ -50,65 +50,86 @@ const MainRoutes = {
       children: [
         {
           path: 'default',
-          element: <DashboardDefault />
+          element: (
+            <ProtectedRoute roles={[2, 1]}>
+              <DashboardDefault />
+            </ProtectedRoute>
+          )
         }
       ]
     },
     {
-      path: 'typography',
-      element: <UtilsTypography />
-    },
-    {
-      path: 'color',
-      element: <UtilsColor />
-    },
-    {
-      path: 'shadow',
-      element: <UtilsShadow />
-    },
-    // {
-    //   path: '/sample-page',
-    //   element: <SamplePage />
-    // },
-    {
       path: 'user-list',
-      element: <Users />
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <Users />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: 'service-list',
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <ServiceListPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: 'blogs',
-      element: <BlogListPage />
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <BlogListPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: 'post-blog',
-      element: <PostBlogPage />
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <PostBlogPage />
+        </ProtectedRoute>
+      )
     },
     {
-      path: 'portfolios',
-      element: <PortfolioListPage />
-    },
-    {
-      path: 'post-portfolio',
-      element: <PostPortfolioPage />
+      path: 'quote-list',
+      element: (
+        <ProtectedRoute roles={[2, 1]}>
+          <QuotesListPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: 'edit-blog/:post_id',
-      element: <EditBlogPage />
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <EditBlogPage />
+        </ProtectedRoute>
+      )
     },
-    {
-      path: 'edit-portfolio/:post_id',
-      element: <EditPortfolioPage />
-    },
+
     {
       path: 'category',
-      element: <CategoryListPage />
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <CategoryListPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: 'tag',
-      element: <TagListPage />
+      element: (
+        <ProtectedRoute roles={[2]}>
+          <TagListPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: 'client-list',
-      element: <ClientListPage />
+      element: (
+        <ProtectedRoute roles={[2, 1]}>
+          <ClientListPage />
+        </ProtectedRoute>
+      )
     },
     {
       path: 'profiles',
@@ -116,7 +137,7 @@ const MainRoutes = {
         {
           path: 'account',
           element: (
-            <ProtectedRoute roles={[1]}>
+            <ProtectedRoute roles={[2, 1]}>
               <AccountProfile />
             </ProtectedRoute>
           ),
@@ -124,7 +145,7 @@ const MainRoutes = {
             {
               path: 'me',
               element: (
-                <ProtectedRoute roles={[1]}>
+                <ProtectedRoute roles={[2, 1]}>
                   <AccountTabProfile />
                   {/* <AccountProfile /> */}
                 </ProtectedRoute>
@@ -133,7 +154,7 @@ const MainRoutes = {
             {
               path: 'change-password',
               element: (
-                <ProtectedRoute roles={[1]}>
+                <ProtectedRoute roles={[2, 1]}>
                   <AccountTabPassword />
                 </ProtectedRoute>
               )
@@ -141,7 +162,7 @@ const MainRoutes = {
             {
               path: 'update-profile',
               element: (
-                <ProtectedRoute roles={[1]}>
+                <ProtectedRoute roles={[2, 1]}>
                   <AccountTabUpdateProfile />
                 </ProtectedRoute>
               )

@@ -1,4 +1,6 @@
 // assets
+import React from 'react'; // Import React if necessary
+
 import {
   IconKey,
   IconArticle,
@@ -8,8 +10,11 @@ import {
   IconTag,
   IconUsers,
   IconUserCog,
-  IconHome
+  IconHome,
+  IconListCheck,
+  IconTruckDelivery
 } from '@tabler/icons-react';
+import { jwtDecode } from 'jwt-decode';
 
 // constant
 const icons = {
@@ -21,12 +26,14 @@ const icons = {
   IconTag,
   IconUsers,
   IconUserCog,
-  IconHome
+  IconHome,
+  IconListCheck,
+  IconTruckDelivery
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
-const pages = {
+const adminMenu = {
   id: 'apps',
   title: 'Apps',
   caption: '',
@@ -42,27 +49,22 @@ const pages = {
       external: true,
       target: true
     },
+
     {
-      id: 'portfolio',
-      title: 'Portfolios',
-      type: 'collapse',
-      icon: icons.IconBriefcase,
-      children: [
-        {
-          id: 'add-portfolio',
-          title: 'Add Portfolio',
-          type: 'item',
-          url: '/post-portfolio',
-          target: false
-        },
-        {
-          id: 'portfolio-list',
-          title: 'portfolio List',
-          type: 'item',
-          url: '/portfolios',
-          target: false
-        }
-      ]
+      id: 'quote',
+      title: 'Quotes',
+      type: 'item',
+      url: '/quote-list',
+      icon: icons.IconTruckDelivery,
+      breadcrumbs: false
+    },
+    {
+      id: 'service',
+      title: 'Services',
+      type: 'item',
+      url: '/service-list',
+      icon: icons.IconListCheck,
+      breadcrumbs: false
     },
     {
       id: 'client',
@@ -131,5 +133,52 @@ const pages = {
     }
   ]
 };
+const employeeMenu = {
+  id: 'apps',
+  title: 'Apps',
+  caption: '',
+  icon: icons.IconKey,
+  type: 'group',
+  children: [
+    {
+      id: 'home',
+      title: 'Home',
+      type: 'item',
+      url: 'https://bahtaexpress.com/',
+      icon: icons.IconHome,
+      external: true,
+      target: true
+    },
+    {
+      id: 'quote',
+      title: 'Quotes',
+      type: 'item',
+      url: '/quote-list',
+      icon: icons.IconTruckDelivery,
+      breadcrumbs: false
+    },
+    {
+      id: 'account',
+      title: 'Account',
+      type: 'item',
+      url: '/profiles/account/me',
+      icon: icons.IconUserCog,
+      breadcrumbs: false
+    }
+  ]
+};
+
+const serviceToken = localStorage.getItem('serviceToken');
+let decoded = null;
+
+if (serviceToken && typeof serviceToken === 'string') {
+  try {
+    decoded = jwtDecode(serviceToken);
+  } catch (error) {
+    console.error('Invalid token:', error);
+  }
+}
+
+const pages = decoded && decoded.user_role === 2 ? adminMenu : employeeMenu;
 
 export default pages;

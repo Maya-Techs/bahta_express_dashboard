@@ -14,12 +14,8 @@ import { IconTrash } from '@tabler/icons-react';
 import { deleteTag } from '../../api/tag';
 
 export default function AlertTagDelete({ id, title, open, handleClose }) {
-  // add stats for error success
-
   const deleteHandler = async () => {
     await deleteTag(id).then(() => {
-      
-
       handleClose();
     });
   };

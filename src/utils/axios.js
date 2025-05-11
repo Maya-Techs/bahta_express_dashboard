@@ -24,7 +24,7 @@ axiosServices.interceptors.response.use(
   (error) => {
     // Handle 401 errors
     if (error.response.status === 401 && !window.location.href.includes('/login')) {
-      window.location.pathname = '/maintenance/500';
+      // window.location.pathname = '/maintenance/500';
     }
 
     // if (error.response.status === 403) {
@@ -44,7 +44,7 @@ axiosServices.interceptors.response.use(
       }
       if (errorMessage.includes('not allowed') || errorMessage.includes('not from your company')) {
         // Redirect to the subscription renewal page
-        window.location.href = '/maintenance/403';
+        // window.location.href = '/maintenance/403';
       }
     }
     // Handle 500 error (INTERNAL SERVER ERROR)

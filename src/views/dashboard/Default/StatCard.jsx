@@ -17,7 +17,8 @@ const gradientMap = {
   success: 'linear-gradient(135deg, #66BB6A 0%, #43A047 100%)',
   warning: 'linear-gradient(135deg, #FFA726 0%, #FB8C00 100%)',
   info: 'linear-gradient(135deg, #29B6F6 0%, #0288D1 100%)',
-  error: 'linear-gradient(135deg, #EF5350 0%, #D32F2F 100%)'
+  error: 'linear-gradient(135deg, #EF5350 0%, #D32F2F 100%)',
+  blue: 'linear-gradient(135deg,rgb(91, 80, 239) 0%,rgb(47, 118, 211) 100%)'
 };
 
 export default function StatCard({ isLoading, count = 0, title = '', icon: Icon, iconColor = 'secondary.800', gradient = 'primary' }) {

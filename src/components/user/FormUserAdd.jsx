@@ -61,7 +61,10 @@ const getInitialValues = (User) => {
   return newUser;
 };
 
-export const CompanyRoles = [{ value: 1, label: 'Admin' }];
+export const CompanyRoles = [
+  { value: 2, label: 'Admin' },
+  { value: 1, label: 'Employee' }
+];
 
 // ==============================|| CUSTOMER ADD / EDIT - FORM ||============================== //
 

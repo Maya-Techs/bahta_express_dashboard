@@ -23,6 +23,6 @@ export default function Logo() {
     /**
      * if you want to use image instead of svg uncomment following, and comment out <svg> element.
      */
-    <img src={BahtaExpressLogo} alt="Bahta Express" width="150" />
+    <img src={BahtaExpressLogo} alt="Bahta Express" width="115" />
   );
 }
