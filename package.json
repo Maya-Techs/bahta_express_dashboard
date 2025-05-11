@@ -2,6 +2,7 @@
   "name": "mbahta-express-admin-dashboard",
   "version": "4.0.1",
   "private": true,
+  "homepage": "https://dashboard.bahtaexpress.com",
   "dependencies": {
     "@date-io/date-fns": "^3.2.1",
     "@emotion/react": "^11.14.0",
