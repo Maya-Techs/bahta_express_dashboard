@@ -6,7 +6,7 @@ import { fetcher } from '../utils/axios';
 import axios from '../utils/axios';
 
 export const endpoints = {
-  services: '/services',
+  services: '/pub/services',
   create: '/service',
   update: '/service/',
   delete: '/service/'
