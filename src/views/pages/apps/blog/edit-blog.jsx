@@ -65,7 +65,7 @@ const EditBlogPage = () => {
         author_id: user.user_id,
         blog_id: data.blog_id,
         title: data.title,
-        slug: data.slug,
+        slug: data.slug || '',
         content: data.content,
         status: data.status || '',
         blog_image: data.image_url,
@@ -94,7 +94,7 @@ const EditBlogPage = () => {
     if (blogImage) {
       formData.append('blog_image', blogImage);
     }
-    const requiredFields = ['title', 'slug', 'content', 'status', 'category_id', 'tag_ids'];
+    const requiredFields = ['title', 'content', 'status', 'category_id', 'tag_ids'];
     const missingFields = requiredFields.filter((field) => !form[field] || (Array.isArray(form[field]) && form[field].length === 0));
 
     if (missingFields.length > 0) {
@@ -157,6 +157,9 @@ const EditBlogPage = () => {
                 )}
               </Box>
             </Box>
+            <Typography variant="caption" color="textSecondary" sx={{ mt: 1, display: 'block' }}>
+              Image must be 1MB or less.
+            </Typography>
           </label>
         </Grid>
         <Grid item xs={12} sm={6}>

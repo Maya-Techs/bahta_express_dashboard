@@ -15,7 +15,7 @@ export default function CSVExport({ data, filename, headers }) {
 
   return (
     <CSVLink data={data} filename={filename} headers={headers}>
-      <Tooltip title="CSV Export">
+      <Tooltip title="CSV Export - Make sure you selected rows before export, may you get empty file">
         <IconDownload
           size={28}
           variant="Outline"

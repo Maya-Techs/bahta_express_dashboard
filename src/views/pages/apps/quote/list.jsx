@@ -45,7 +45,7 @@ import {
 // assets
 import { useGetQuotes } from '../../../../api/quote';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
-import { IconButton, Typography } from '@mui/material';
+import { Chip, IconButton, Typography } from '@mui/material';
 import { IconEye, IconRefresh, IconSettings, IconEdit, IconUserMinus, IconUserPlus, IconUserFilled, IconPlus } from '@tabler/icons-react';
 import QuoteView from '../../../../components/quote/QuoteView';
 
@@ -281,10 +281,20 @@ export default function QuotesListPage() {
         header: 'Origin Address',
         accessorKey: 'origin_address'
       },
-      // {
-      //   header: 'Destination Address',
-      //   accessorKey: 'destination_address'
-      // },
+      {
+        header: 'Status',
+        accessorKey: 'status',
+        cell: (cell) => {
+          switch (cell.getValue()) {
+            case 'pending':
+              return <Chip color="warning" label="Pending" size="small" />;
+            case 'approved':
+              return <Chip color="success" label="Approved" size="small" />;
+            case 'rejected':
+              return <Chip color="error" label="Rejected" size="small" />;
+          }
+        }
+      },
       {
         header: 'Submitted At',
         accessorKey: 'submitted_at',
@@ -385,4 +395,5 @@ export default function QuotesListPage() {
   );
 }
 
+ReactTable.propTypes = { data: PropTypes.array, columns: PropTypes.array, modalToggler: PropTypes.func };
 ReactTable.propTypes = { data: PropTypes.array, columns: PropTypes.array, modalToggler: PropTypes.func };

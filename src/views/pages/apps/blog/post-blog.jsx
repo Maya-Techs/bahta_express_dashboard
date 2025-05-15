@@ -57,16 +57,6 @@ const PostBlogPage = () => {
     setForm((prev) => ({ ...prev, author_id: user.user_id }));
   }, [user]);
 
-  const handleTagsChange = (event) => {
-    const {
-      target: { value }
-    } = event;
-    setForm((prev) => ({
-      ...prev,
-      tag_ids: typeof value === 'string' ? value.split(',') : value
-    }));
-  };
-
   const handleFileChange = (e) => {
     setBlogImage(e.target.files[0]);
   };
@@ -87,7 +77,7 @@ const PostBlogPage = () => {
     }
     formData.append('blog_image', blogImage);
 
-    const requiredFields = ['title', 'slug', 'content', 'status', 'category_id', 'tag_ids'];
+    const requiredFields = ['title', 'content', 'status', 'category_id', 'tag_ids'];
     const missingFields = requiredFields.filter((field) => !form[field] || (Array.isArray(form[field]) && form[field].length === 0));
 
     if (missingFields.length > 0) {
@@ -153,13 +143,16 @@ const PostBlogPage = () => {
                 )}
               </Box>
             </Box>
+            <Typography variant="caption" color="textSecondary" sx={{ mt: 1, display: 'block' }}>
+              Image must be 1MB or less.
+            </Typography>
           </label>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField fullWidth label="Title *" name="title" value={form.title} onChange={handleChange} />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField fullWidth label="Slug *" name="slug" value={form.slug} onChange={handleChange} />
+          <TextField fullWidth label="Slug" name="slug" value={form.slug} onChange={handleChange} />
         </Grid>
 
         <Grid item xs={12} sm={6}>

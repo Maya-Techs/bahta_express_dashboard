@@ -174,8 +174,7 @@ const BlogListPage = () => {
               </CardContent>
               <Box px={2} pb={2} display="flex" justifyContent="start">
                 <a
-                  href={`https://bahtaexpress.com/blog/details/${blog.post_id}`}
-                  target="_blank"
+                  href={`https://bahtaexpress.com/blog/detail/${blog.post_id}`}
                   rel="noreferrer"
                   underline="none"
                   color="#FF5823"
@@ -204,7 +203,7 @@ const BlogListPage = () => {
                 </a>
               </Box>
               <Box display="flex" justifyContent="space-around" mt={2} gap={1}>
-                <a href={`https://bahtaexpress.com/blog/details/${blog.post_id}`}>
+                <a href={`https://bahtaexpress.com/blog/detail/${blog.post_id}`}>
                   <IconButton color="primary" aria-label="view blog">
                     <IconEyeDotted />
                   </IconButton>
