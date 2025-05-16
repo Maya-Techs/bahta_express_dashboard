@@ -37,6 +37,8 @@ const getInitialValues = (client) => {
     website: '',
     company_name: '',
     industry: '',
+    message: '',
+    client_role: '',
     logo: null
   };
 
@@ -59,7 +61,9 @@ export default function FormClientAdd({ client, closeModal }) {
     phone: Yup.string().max(20).notRequired(),
     website: Yup.string().url('Invalid website').notRequired(),
     company_name: Yup.string().required('Company name is required'),
-    industry: Yup.string().notRequired()
+    industry: Yup.string().notRequired(),
+    client_role: Yup.string().notRequired(), // new
+    message: Yup.string().notRequired()
   });
 
   const formik = useFormik({
@@ -68,7 +72,7 @@ export default function FormClientAdd({ client, closeModal }) {
     enableReinitialize: true,
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        if (logoFile === null) {
+        if (!client && logoFile === null) {
           setLogoFileError('Logo is required');
           return;
         }
@@ -80,6 +84,8 @@ export default function FormClientAdd({ client, closeModal }) {
         formData.append('company_name', values.company_name);
         formData.append('industry', values.industry);
         formData.append('client_logo', logoFile);
+        formData.append('client_role', values.client_role);
+        formData.append('message', values.message);
 
         let res;
         if (client) {
@@ -209,7 +215,35 @@ export default function FormClientAdd({ client, closeModal }) {
                     />
                   </Stack>
                 </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Stack spacing={1}>
+                    <InputLabel htmlFor="client_role">Client Role</InputLabel>
+                    <TextField
+                      fullWidth
+                      id="client_role"
+                      placeholder="Enter client role"
+                      {...getFieldProps('client_role')}
+                      error={Boolean(touched.client_role && errors.client_role)}
+                      helperText={touched.client_role && errors.client_role}
+                    />
+                  </Stack>
+                </Grid>
 
+                <Grid item xs={12} sm={6}>
+                  <Stack spacing={1}>
+                    <InputLabel htmlFor="message">Message</InputLabel>
+                    <TextField
+                      fullWidth
+                      id="message"
+                      placeholder="Enter message"
+                      multiline
+                      minRows={3}
+                      {...getFieldProps('message')}
+                      error={Boolean(touched.message && errors.message)}
+                      helperText={touched.message && errors.message}
+                    />
+                  </Stack>
+                </Grid>
                 <Grid item xs={12} sm={6}>
                   <Stack spacing={1}>
                     <InputLabel htmlFor="industry">Industry</InputLabel>
@@ -247,10 +281,14 @@ export default function FormClientAdd({ client, closeModal }) {
                 </Grid>
               </Grid>
             </Grid>
+            <Typography sx={{ mt: 3, color: 'indigo' }}>
+              Client role and message are required for the client to appear in the "What Clients Say" section.
+            </Typography>
           </Grid>
         </DialogContent>
 
         <Divider />
+
         <DialogActions sx={{ p: 2.5 }}>
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item />

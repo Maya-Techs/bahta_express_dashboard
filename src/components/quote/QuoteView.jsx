@@ -173,50 +173,53 @@ export default function QuoteView({ data }) {
                 </ListItem>
               </List>
             </MainCard>
-            <MainCard title="Cargo Details">
-              <List sx={{ py: 0 }}>
-                <ListItem>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} md={6}>
-                      <Stack spacing={0.5}>
-                        <Typography color="secondary">Weight (kg):</Typography>
-                        <Grid item>
-                          <Typography>{data.weight_kg}</Typography>
-                        </Grid>
-                      </Stack>
+            {data.cargos?.map((cargo, index) => (
+              <MainCard key={index} title={`Cargo Details ${data.cargos.length > 1 ? index + 1 : ''}`}>
+                <List sx={{ py: 0 }}>
+                  <ListItem>
+                    <Grid container spacing={3}>
+                      <Grid item xs={12} md={6}>
+                        <Stack spacing={0.5}>
+                          <Typography color="secondary">Weight (kg):</Typography>
+                          <Grid item>
+                            <Typography>{cargo.weight_kg}</Typography>
+                          </Grid>
+                        </Stack>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Stack spacing={0.5}>
+                          <Typography color="secondary">Dimensions (LxWxH):</Typography>
+                          <Grid item>
+                            <Typography>{cargo.dimensions}</Typography>
+                          </Grid>
+                        </Stack>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Stack spacing={0.5}>
-                        <Typography color="secondary">Dimensions (LxWxH):</Typography>
-                        <Grid item>
-                          <Typography>{data.dimensions}</Typography>
-                        </Grid>
-                      </Stack>
+                  </ListItem>
+
+                  <ListItem>
+                    <Grid container spacing={3}>
+                      <Grid item xs={12} md={6}>
+                        <Stack spacing={0.5}>
+                          <Typography color="secondary">Number of Pieces:</Typography>
+                          <Grid item>
+                            <Typography>{cargo.number_of_pieces}</Typography>
+                          </Grid>
+                        </Stack>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Stack spacing={0.5}>
+                          <Typography color="secondary">Commodity:</Typography>
+                          <Grid item>
+                            <Typography>{cargo.commodity}</Typography>
+                          </Grid>
+                        </Stack>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </ListItem>
-                <ListItem>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} md={6}>
-                      <Stack spacing={0.5}>
-                        <Typography color="secondary">Number of Pieces:</Typography>
-                        <Grid item>
-                          <Typography>{data.number_of_pieces}</Typography>
-                        </Grid>
-                      </Stack>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Stack spacing={0.5}>
-                        <Typography color="secondary">Commodity:</Typography>
-                        <Grid item>
-                          <Typography>{data.commodity}</Typography>
-                        </Grid>
-                      </Stack>
-                    </Grid>
-                  </Grid>
-                </ListItem>
-              </List>
-            </MainCard>
+                  </ListItem>
+                </List>
+              </MainCard>
+            ))}
           </Stack>
         </Grid>
       </Grid>

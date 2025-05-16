@@ -146,8 +146,8 @@ const employeeMenu = {
       type: 'item',
       url: 'https://bahtaexpress.com/',
       icon: icons.IconHome,
-      external: true,
-      target: true
+      external: false,
+      target: false
     },
     {
       id: 'quote',

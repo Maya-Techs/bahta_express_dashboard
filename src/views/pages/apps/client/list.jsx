@@ -46,7 +46,8 @@ import {
 import { useGetClients } from '../../../../api/client';
 import AnimateButton from '../../../../ui-component/extended/AnimateButton';
 import { IconButton, Typography } from '@mui/material';
-import { IconEye, IconRefresh, IconSettings, IconEdit, IconUserMinus, IconUserPlus } from '@tabler/icons-react';
+import { IconEye, IconRefresh, IconSettings, IconEdit, IconUserMinus, IconUserPlus, IconPlus } from '@tabler/icons-react';
+import ClientView from '../../../../components/client/QuoteClient';
 
 // ==============================|| REACT TABLE - LIST ||============================== //
 
@@ -178,13 +179,14 @@ function ReactTable({ data, columns, modalToggler, ClientsLoading, refreshClient
                         </TableCell>
                       ))}
                     </TableRow>
-                    {/* {row.getIsExpanded() && (
-                      <TableRow sx={{ bgcolor: backColor, '&:hover': { bgcolor: `${backColor} !important` }, overflow: 'hidden' }}>
+
+                    {row.getIsExpanded() && (
+                      <TableRow sx={{ bgcolor: '#E3F2FD', '&:hover': { bgcolor: '#E3F2FD' }, overflow: 'hidden' }}>
                         <TableCell colSpan={row.getVisibleCells().length} sx={{ p: 2.5, overflow: 'hidden' }}>
                           <ClientView data={row.original} />
                         </TableCell>
                       </TableRow>
-                    )} */}
+                    )}
                   </Fragment>
                 ))}
               </TableBody>
@@ -311,8 +313,19 @@ export default function ClientListPage() {
         },
         disableSortBy: true,
         cell: ({ row }) => {
+          const collapseIcon =
+            row.getCanExpand() && row.getIsExpanded() ? (
+              <IconPlus style={{ color: theme.palette.error.main, transform: 'rotate(45deg)' }} />
+            ) : (
+              <IconEye />
+            );
           return (
             <Stack direction="row" alignItems="center" justifyContent="center" spacing={2}>
+              <Tooltip title="View">
+                <IconButton color="secondary" onClick={row.getToggleExpandedHandler()}>
+                  {collapseIcon}
+                </IconButton>
+              </Tooltip>
               <Tooltip title="Edit">
                 <IconButton
                   color="primary"
