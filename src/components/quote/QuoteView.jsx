@@ -171,6 +171,26 @@ export default function QuoteView({ data }) {
                     </Grid>
                   </Grid>
                 </ListItem>
+                <ListItem>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} md={6}>
+                      <Stack spacing={0.5}>
+                        <Typography color="secondary">City:</Typography>
+                        <Grid item>
+                          <Typography>{data.city}</Typography>
+                        </Grid>
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <Stack spacing={0.5}>
+                        <Typography color="secondary">Address:</Typography>
+                        <Grid item>
+                          <Typography>{data.address || 'Not Provided'}</Typography>
+                        </Grid>
+                      </Stack>
+                    </Grid>
+                  </Grid>
+                </ListItem>
               </List>
             </MainCard>
             {data.cargos?.map((cargo, index) => (

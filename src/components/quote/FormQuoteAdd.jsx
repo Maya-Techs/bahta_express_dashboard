@@ -42,6 +42,8 @@ const QuoteSchema = Yup.object().shape({
   origin_address: Yup.string().max(255).required('Origin address is required'),
   destination_address: Yup.string().max(255).required('Destination address is required'),
   additional_info: Yup.string().max(255),
+  city: Yup.string().max(255),
+  address: Yup.string().max(255),
   cargos: Yup.array().of(CargoSchema).min(1, 'At least one cargo is required')
 });
 
@@ -62,6 +64,8 @@ export default function FormQuoteAdd({ Quote, closeModal }) {
       phone_number: Quote?.phone_number || '',
       origin_address: Quote?.origin_address || '',
       destination_address: Quote?.destination_address || '',
+      city: Quote?.city || '',
+      address: Quote?.address || '',
       weight_kg: Quote?.weight_kg || '',
       dimensions: Quote?.dimensions || '',
       number_of_pieces: Quote?.number_of_pieces || '',
@@ -129,7 +133,9 @@ export default function FormQuoteAdd({ Quote, closeModal }) {
                     { id: 'email', label: 'Email', type: 'email' },
                     { id: 'phone_number', label: 'Phone Number', type: 'text' },
                     { id: 'origin_address', label: 'Origin Address', type: 'text' },
-                    { id: 'destination_address', label: 'Destination Address', type: 'text' }
+                    { id: 'destination_address', label: 'Destination Address', type: 'text' },
+                    { id: 'city', label: 'City', type: 'text' },
+                    { id: 'address', label: 'Address', type: 'text' }
                   ].map(({ id, label, type }) => (
                     <Grid item xs={12} key={id}>
                       <Stack spacing={1}>
