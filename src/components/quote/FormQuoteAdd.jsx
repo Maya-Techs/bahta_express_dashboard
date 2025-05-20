@@ -145,9 +145,7 @@ export default function FormQuoteAdd({ Quote, closeModal }) {
                     { id: 'origin_address', label: 'Origin Address', type: 'text' },
                     { id: 'destination_country', label: 'Destination Country', type: 'text' },
                     { id: 'destination_city', label: 'Destination City', type: 'text' },
-                    { id: 'destination_address', label: 'Destination Address', type: 'text' },
-                    { id: 'city', label: 'City', type: 'text' },
-                    { id: 'address', label: 'Address', type: 'text' }
+                    { id: 'destination_address', label: 'Destination Address', type: 'text' }
                   ].map(({ id, label, type }) => (
                     <Grid item xs={12} key={id}>
                       <Stack spacing={1}>
