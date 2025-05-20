@@ -278,8 +278,8 @@ export default function QuotesListPage() {
         accessorKey: 'phone_number'
       },
       {
-        header: 'Origin Address',
-        accessorKey: 'origin_address'
+        header: 'Origin Country',
+        accessorKey: 'origin_country'
       },
       {
         header: 'Status',
