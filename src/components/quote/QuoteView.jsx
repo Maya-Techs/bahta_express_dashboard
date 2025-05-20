@@ -155,17 +155,25 @@ export default function QuoteView({ data }) {
                   <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
-                        <Typography color="secondary">Origin Address/Country:</Typography>
+                        <Typography color="secondary">Origin Country:</Typography>
                         <Grid item>
-                          <Typography>{data.origin_address}</Typography>
+                          <Typography>{data.origin_country}</Typography>
                         </Grid>
                       </Stack>
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
-                        <Typography color="secondary">Destination Address/Country:</Typography>
+                        <Typography color="secondary">Origin City:</Typography>
                         <Grid item>
-                          <Typography>{data.destination_address}</Typography>
+                          <Typography>{data.origin_city}</Typography>
+                        </Grid>
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <Stack spacing={0.5}>
+                        <Typography color="secondary">Origin Address:</Typography>
+                        <Grid item>
+                          <Typography>{data.origin_address || 'Not Provided'}</Typography>
                         </Grid>
                       </Stack>
                     </Grid>
@@ -175,17 +183,25 @@ export default function QuoteView({ data }) {
                   <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
-                        <Typography color="secondary">City:</Typography>
+                        <Typography color="secondary">Destination Country:</Typography>
                         <Grid item>
-                          <Typography>{data.city}</Typography>
+                          <Typography>{data.destination_country}</Typography>
                         </Grid>
                       </Stack>
                     </Grid>
                     <Grid item xs={12} md={6}>
                       <Stack spacing={0.5}>
-                        <Typography color="secondary">Address:</Typography>
+                        <Typography color="secondary">Destination City:</Typography>
                         <Grid item>
-                          <Typography>{data.address || 'Not Provided'}</Typography>
+                          <Typography>{data.destination_city}</Typography>
+                        </Grid>
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                      <Stack spacing={0.5}>
+                        <Typography color="secondary">Destination Address:</Typography>
+                        <Grid item>
+                          <Typography>{data.destination_address}</Typography>
                         </Grid>
                       </Stack>
                     </Grid>
