@@ -41,8 +41,13 @@ export default function AuthLogin() {
     try {
       const response = await login(email, password);
       if (response.status === 'success') {
-        window.location.href = '/pages/code-verification';
+        // store token
+        localStorage.setItem('serviceToken', response.data.access_token);
+
+        // redirect to main app
+        window.location.href = '/'; // or '/dashboard'
       }
+      
     } catch (error) {
       setError(error.message || 'Login failed, please try again.');
     } finally {
